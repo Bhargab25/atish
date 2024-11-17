@@ -1,0 +1,190 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#invoiceModal{
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #invoiceContent{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+.in-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.main{
+    width: 21cm;
+    height: 29cm ;
+    padding: 1cm;
+    background-color: rgb(248, 245, 245);
+}
+main h4{
+    width: fit-content;
+    margin: auto;
+}
+.box{
+    height: 26.7cm;
+    border: 1px solid black;
+}
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-l{
+    width: 40%;
+    height: 200px;
+    border-right: 1px solid black;
+}
+.seller{
+    border-bottom: 1px solid black;
+    height: 100px;
+    padding-block-start: 4px;
+    line-height: .15rem;
+    font-size: .85rem;
+}
+.seller h3{
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: black;
+}
+.buyer{
+    /* height: 170px; */
+    padding-block-start: 8px;
+    line-height: .25rem;
+    line-height: .15rem;
+    font-size: .85rem;
+}
+.buyer h3{
+    font-size: 1rem;
+}
+.top-r{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.top-r div{
+    width: 50%;
+    height: 40px;
+    border-bottom: .5px solid black;
+    border-right: .5px solid black;
+    padding-block-start: 8px;
+    border-collapse: collapse;
+    line-height: .10rem;
+}
+.top-r :last-child{
+    width: 100%;
+    border-bottom: none;
+}
+.top-p{
+    font-size: .75em;
+    font-weight: bold;
+}
+
+/* End Top */
+
+table{
+    margin: 0;
+    padding: 0; 
+    border-spacing: 0; 
+    border-collapse: collapse;
+    width: 100%;
+    border: 0.5px solid black;
+}
+td{
+    padding-inline: 4px;
+    padding-block: 1px;
+}
+thead{
+    text-align: center;
+}
+thead th{
+    margin: 0;
+    border: 0.5px solid black;
+}
+.sl{
+    width: 2%;
+}
+.des{
+    width: 50%;
+}
+.per{
+    width: 10%;
+}
+.amount{
+    width: 20%;
+}
+tbody td {
+    border-right: 0.5px solid black;
+    height: 20px;
+    text-align: left;
+}
+
+td::before {
+    content: "\00a0";
+}
+tbody td{
+    border-right: 0.5px solid black;
+}
+.rate, .pc, .amnt{
+    text-align: right;
+}
+tfoot td{
+    text-align: end;
+    border-right: 0.5px solid black;
+}
+.total{
+    border-block: 1px solid black;
+}
+tfoot :last-child td{
+    border-block: 1px solid black;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+.end{
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    padding-block: 2px;
+    /* display: flex; */
+}
+.end p{
+    display: inline;
+}
+.end h4{
+    display: inline;
+    font-size: 1rem;
+}
+.foot{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+.foot-1{
+    width: 60%;
+    height: 60px;
+    line-height: .60rem;
+    border-right: 1px solid black;
+    padding-block-start: 8px;
+}
+.foot-1 :last-child{
+    border-top: 1px solid black;
+    padding-block-start: 4px;
+}
+.foot-2{
+    width: 40%;
+    line-height: .60rem;
+}

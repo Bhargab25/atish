@@ -1,0 +1,1 @@
+<?phpclass KeyVal {    public $key;    public $val;}?>
