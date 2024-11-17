@@ -1,0 +1,14 @@
+{
+    "name": "atish/atish-project", 
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpoffice/phpspreadsheet": "^3.4"
+    },
+    "authors": [
+        {
+            "name": "bhargab"
+        }
+    ]
+}

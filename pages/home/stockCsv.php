@@ -1,30 +1,44 @@
 <?php 
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
+// Include the PHPSpreadsheet library
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 include_once('../../include_commons.php'); 
-header('Content-Type: text/csv');
-header('Content-Disposition: attachment; filename="ReportOn'.date("Y-m-d H:i:s").'.csv"');
+
+require_once '../../vendor/autoload.php';
+
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment; filename="ReportOn' . date("Y-m-d_H-i-s") . '.xlsx"');
+header('Cache-Control: max-age=0');  
 
 
-// $dat = $_GET['dat'];
-// $startdate = substr($dat, 0, 10);
-// $enddate = substr($dat,13);
-$stock = Stock::ReadAll();/**/
-$csvdata []='Category,Name,Qty,Unit';
+$stock = Stock::ReadAll();
 
-foreach($stock as $s){
 
-  $csvdata []= $s->main.','.$s->name.','.$s->qty.','.$s->unit."\n";         
-    
+$spreadsheet = new Spreadsheet();
+
+// Set the active sheet and write the header row
+$sheet = $spreadsheet->getActiveSheet();
+$sheet->setCellValue('A1', 'Category')
+      ->setCellValue('B1', 'Name')
+      ->setCellValue('C1', 'Qty')
+      ->setCellValue('D1', 'Unit');
+
+// Add data from the stock to the Excel sheet
+$row = 2; // Start from row 2 since row 1 is for headers
+foreach($stock as $s) {
+    // Ensure that all properties exist and are properly written
+    $sheet->setCellValue('A' . $row, $s->main ?? '')
+          ->setCellValue('B' . $row, $s->name ?? '')
+          ->setCellValue('C' . $row, $s->qty ?? '')
+          ->setCellValue('D' . $row, $s->unit ?? '');
+    $row++;
 }
-//print_r($csvdata);
-$fp = fopen('php://output', 'wb');
-foreach ( $csvdata as $line ) {
-    $val = explode(",", $line);
-    fputcsv($fp, $val);
-}
-fclose($fp);
+
+// Create an Excel writer instance and save to output
+$writer = new Xlsx($spreadsheet);
+$writer->save('php://output');
+
+// Ensure no further output is sent
+exit;
 ?>
