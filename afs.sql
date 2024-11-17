@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2024 at 06:28 AM
+-- Generation Time: Nov 17, 2024 at 06:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -73,9 +73,18 @@ INSERT INTO `appuser` (`uid`, `name`, `mobile`, `email`, `password`, `role`, `si
 CREATE TABLE `expense` (
   `id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `date` date NOT NULL,
-  `remarks` varchar(200) NOT NULL
+  `amount` varchar(20) NOT NULL,
+  `date` date DEFAULT NULL,
+  `remarks` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `expense`
+--
+
+INSERT INTO `expense` (`id`, `name`, `amount`, `date`, `remarks`) VALUES
+(1, 'Bhargab Chatterjee', '2323', '2024-11-17', ''),
+(2, 'Sumit Chatterjee', '2323', '2024-11-17', 'test');
 
 -- --------------------------------------------------------
 
@@ -670,7 +679,7 @@ ALTER TABLE `secuence`
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `invoice_gst_history`
