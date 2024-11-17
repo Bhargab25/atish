@@ -4,11 +4,10 @@
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 include_once('../../include_commons.php'); 
-
 require_once '../../vendor/autoload.php';
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment; filename="ReportOn' . date("Y-m-d_H-i-s") . '.xlsx"');
+header('Content-Disposition: attachment; filename="Stock' . date("Y-m-d_H-i-s") . '.xlsx"');
 header('Cache-Control: max-age=0');  
 
 
