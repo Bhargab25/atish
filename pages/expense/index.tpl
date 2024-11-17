@@ -27,17 +27,16 @@
                             <h6 class="m-0 font-weight-bold text-primary">Add Expenses</h6>
                         </div>
                         <div class="card-body">
-                            <form id="stock_form" role="form">
+                            <form role="form" method="post" name="add_expense" action="index.php">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <input type="hidden" class="form-control" id="sc_id" name="sc_id" required>
                                         <label>Name</label>
-                                        <input type="text" class="form-control" id="tags" placeholder="Enter Name" name="name" required>
+                                        <input type="text" class="form-control" placeholder="Enter Name" name="name" required>
                                     </div>
                                     <div class="col-md-3">
                                         <label>Ammount</label>
-                                        <input type="text" class="form-control" placeholder="Ammount" id="ammount" name="ammount" required>
+                                        <input type="text" class="form-control" placeholder="Ammount" id="ammount" name="amount" required>
                                     </div>
                                     <div class="col-md-3">
                                         <label>Date</label>
@@ -50,7 +49,7 @@
                                 </div>
                             </div>
                                 <button class="btn btn-secondary mr-2" type="reset">Cancel</button>
-                                <button id="add_btn" class="btn btn-primary" name="addp" type="submit">Add New</button>
+                                <button id="add_btn" class="btn btn-primary" name="addExp" type="submit">Add New</button>
                             </form>
                         </div>
                     </div>
@@ -82,48 +81,6 @@
 
     <!-- Bootstrap core JavaScript-->
    <?php echo $this->script ?>
-   
-   <script>
-    $(document).ready(function() {
-    // Handle form submission
-    $("#stock_form").submit(function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-        $("#add_btn").val('Adding...');
-
-        $.ajax({
-            url: 'addScPayment.php',
-            type: 'POST',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(res) {
-               let ress = JSON.parse(res);
-                // Check status and handle the response
-                if (ress.status == 1) {
-                    console.log(ress);
-                    alert('Payment added successfully!');
-                    $("#stock_form")[0].reset();
-                    //window.location.reload();
-                } else {
-                    alert('Failed to add stock!');
-                    console.log(res.error);
-                }
-
-                $("#add_btn").val('Add Payment');
-            },
-            error: function(xhr, status, error) {
-                console.error('Ajax Error:', error);
-                $("#add_btn").val('Add Payment');
-            }
-        });
-    });
-
-});
-
-    </script>
-
 </body>
 
 </html>

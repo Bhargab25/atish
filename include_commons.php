@@ -20,3 +20,4 @@ include_once 'model/sdPayment.php';
 include_once 'model/invoice.php';
 include_once 'model/dashboard.php';
 include_once 'model/stockModel.php';
+include_once 'model/expense.php';

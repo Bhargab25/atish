@@ -9,42 +9,24 @@ $savant = new Savant3();
 $savant->addPath("template", "../../includes/");	
 $error_u=false;
 $error_p=false;
-// $model = new subproductModel();
+$model = new expmodel();
 
 
 if(isset($_SESSION['userid'])){
 	// Get Products List
-// 	$sd = subproductModel::ReadAll();
+	if(isset($_POST['addExp'])){ 
+		$model->name = $_POST['name'];
+		$model->amount = $_POST['amount'];
+		$model->date = $_POST['date'];
+		$model->remarks = $_POST['remarks'];
 
-// 	$getuserdetails = usermodel::ReadSingle($_SESSION['userid']);
-//     $seq = secuenceModel::ReadSingle('subpro');
-// 	if(isset($_POST['addp'])){
-
-// 		if(!$_POST['id']){
-// 		$pid = productModel::ReadSingleByName($_POST['category']);
-//         $model->id = $seq->head . ((int)$seq->sno + 1);
-// 		$model->main_prod = $pid->id;
-// 		$model->name = $_POST['name'];
-// 		$model->created_at = date('Y-m-d h:i:s');
-// 		$model->current_stock = 0;
-// 		$model->status = 1;
-
-// 		$id = subproductModel::Create($model);
-// 		// Update Secuence table s number
-// 	    secuenceModel::UpdateSno($seq->type,((int)$seq->sno + 1));
-// 		header('location: index.php');
-// 	}else{
-// 		$pid = productModel::ReadSingleByName($_POST['category']);
-// 		$model->id = $_POST['id'];
-// 		$model->main_prod = $pid->id;
-// 		$model->name = $_POST['name'];
-
-// 		$id = subproductModel::Update($model);
-// 		header('location: index.php');
-// 	}
-// }
-	
-
+		$id = expmodel::Create($model);
+		if($id != 0){
+			//$error_u = "You have successfully added user";
+			header('location:index.php');
+		}
+		
+	}
 }else{
 	header('location: ../login/index.php');
 }
