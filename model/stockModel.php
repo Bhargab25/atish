@@ -58,22 +58,42 @@ public static function ReadAll() {
         return $list;
     }
 
-    public static function RecentSell() {
+    public static function RecentSell($from = null, $to = null) {
         $model = new Stock();
         $mysqli = Config::OpenDBConnection();
-        $query = "SELECT product_name, SUM(qty) AS total_qty, MAX(unit) AS unit FROM invoice_gst_history WHERE DATE(created_at) = CURDATE() GROUP BY product_name;";
+    
+        if (!empty($from) && !empty($to)) {
+            $query = "SELECT product_name, SUM(qty) AS total_qty, MAX(unit) AS unit 
+                      FROM invoice_gst_history 
+                      WHERE DATE(created_at) BETWEEN ? AND ? 
+                      GROUP BY product_name;";
+        } else {
+            $query = "SELECT product_name, SUM(qty) AS total_qty, MAX(unit) AS unit 
+                      FROM invoice_gst_history 
+                      WHERE DATE(created_at) = CURDATE() 
+                      GROUP BY product_name;";
+        }
+    
         $stmt = Config::CreateStatement($mysqli, $query);
+    
+        // Bind parameters if $from and $to are set
+        if (!empty($from) && !empty($to)) {
+            $stmt->bind_param("ss", $from, $to);
+        }
+    
         $stmt->bind_result($model->name, $model->qty, $model->unit);
         $stmt->execute();
+    
         $list = array();
         while ($stmt->fetch()) {
             $obj = new Stock();
             Utils::COPY_ROW_TO_OBJ($obj, $model);
             $list[$obj->name] = $obj;
         }
+    
         $mysqli->close();
         return $list;
-    }	
+    }
 
 }
 ?>

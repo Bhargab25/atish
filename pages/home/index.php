@@ -15,6 +15,9 @@ $it_resources = 0;
 $total_users = 0;
 
 if(isset($_SESSION['userid'])){
+
+  $role = usermodel::ReadSingle($_SESSION['userid'])->role;
+
   // Get Total SD Due 
   $total_due = Dashboard::DueCount();
   $sc_total_due = Dashboard::ScDueCount();
@@ -84,6 +87,7 @@ $savant->scDue = $scDue;
 $savant->sdDue = $sdDue;
 $savant->buy_list = $buy_list;
 $savant->recentSell = $recentSell;
+$savant->role = $role;
 
 
 $savant->header = $savant->fetch("header.tpl");

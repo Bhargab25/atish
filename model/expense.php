@@ -50,22 +50,44 @@ public static function ReadAll() {
         return $list;
     }
 
-public static function ReadToday() {
-    $model = new expmodel();
-    $mysqli = Config::OpenDBConnection();
-    $query = "SELECT * FROM expense WHERE DATE(date) = CURDATE() ORDER BY id DESC";
-    $stmt = Config::CreateStatement($mysqli, $query);
-    $stmt->bind_result($model->id, $model->name,$model->amount, $model->date,$model->remarks);
-    $stmt->execute();
-    $list = array();
-    while ($stmt->fetch()) {
-        $obj = new expmodel();
-        Utils::COPY_ROW_TO_OBJ($obj, $model);
-        $list[$obj->id] = $obj;
+    public static function ReadToday($from = null, $to = null) {
+        $model = new expmodel();
+        $mysqli = Config::OpenDBConnection();
+    
+        // Determine the query based on whether $from and $to are set
+        if (!empty($from) && !empty($to)) {
+            $query = "SELECT * FROM expense WHERE DATE(date) BETWEEN ? AND ? ORDER BY id DESC";
+        } else {
+            $query = "SELECT * FROM expense WHERE DATE(date) = CURDATE() ORDER BY id DESC";
+        }
+    
+        $stmt = Config::CreateStatement($mysqli, $query);
+    
+        // Bind parameters if $from and $to are set
+        if (!empty($from) && !empty($to)) {
+            $stmt->bind_param("ss", $from, $to);
+        }
+    
+        $stmt->bind_result(
+            $model->id,
+            $model->name,
+            $model->amount,
+            $model->date,
+            $model->remarks
+        );
+    
+        $stmt->execute();
+    
+        $list = array();
+        while ($stmt->fetch()) {
+            $obj = new expmodel();
+            Utils::COPY_ROW_TO_OBJ($obj, $model);
+            $list[$obj->id] = $obj;
+        }
+    
+        $mysqli->close();
+        return $list;
     }
-    $mysqli->close();
-    return $list;
-}
 
 
  public static function ReadSingle($id) {

@@ -12,6 +12,35 @@
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
+
+        <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reportModalLabel">Report Data</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reportForm" action="report.php" method="POST">
+                            <div class="mb-3">
+                                <label for="from" class="form-label">From Date</label>
+                                <input type="date" class="form-control" id="from" name="from" required>
+                                
+                                <label for="to" class="form-label">To Date</label>
+                                <input type="date" class="form-control" id="to" name="to" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button class="btn btn-secondary" type="reset">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
             <!-- Main Content -->
             <div id="content">
 
@@ -26,8 +55,9 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                         <div>
-                        <a href="./report.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Today Report</a>
+                        <a href="javascript:void(0);" id="reportButton" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Today Report
+                        </a>
                         <a href="./stockCsv.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Stock Report</a>
                         </div>
@@ -412,6 +442,16 @@
 
 
     <?php echo $this->script; ?>
+    <script>
+        const userRole = <?= $this->role; ?>;
+        document.getElementById('reportButton').addEventListener('click', function () {
+            if (userRole === 1) {
+                $('#reportModal').modal('show');
+            } else {
+                window.location.href = "report.php";
+            }
+        });
+    </script>
 </body>
 
 </html>

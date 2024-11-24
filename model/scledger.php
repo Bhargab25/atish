@@ -58,22 +58,57 @@ public static function ReadAll() {
         return $list;
     }
 
-public static function ReadToday() {
-    $model = new scledgerModel();
-    $mysqli = Config::OpenDBConnection();
-    $query = "SELECT l.id, s.merchant_name scid, l.date, l.type, l.current_amomount, l.truns_ammount, l.mode, l.remarks, l.refno, l.created_by FROM leadger_sc l INNER JOIN scentity s ON s.id = l.scid WHERE DATE(l.created_at) = CURDATE()";
-    $stmt = Config::CreateStatement($mysqli, $query);
-    $stmt->bind_result($model->id,$model->scid,$model->date,$model->type,$model->current_amomount,$model->truns_ammount,$model->mode,$model->remarks,$model->refno,$model->created_by);
-    $stmt->execute();
-    $list = array();
-    while ($stmt->fetch()) {
-        $obj = new scledgerModel();
-        Utils::COPY_ROW_TO_OBJ($obj, $model);
-        $list[$obj->id] = $obj;
+    public static function ReadToday($from = null, $to = null) {
+        $model = new scledgerModel();
+        $mysqli = Config::OpenDBConnection();
+    
+        // Determine the query based on whether $from and $to are set
+        if (!empty($from) && !empty($to)) {
+            $query = "SELECT l.id, s.merchant_name scid, l.date, l.type, l.current_amomount, l.truns_ammount, 
+                             l.mode, l.remarks, l.refno, l.created_by 
+                      FROM leadger_sc l 
+                      INNER JOIN scentity s ON s.id = l.scid 
+                      WHERE DATE(l.created_at) BETWEEN ? AND ?";
+        } else {
+            $query = "SELECT l.id, s.merchant_name scid, l.date, l.type, l.current_amomount, l.truns_ammount, 
+                             l.mode, l.remarks, l.refno, l.created_by 
+                      FROM leadger_sc l 
+                      INNER JOIN scentity s ON s.id = l.scid 
+                      WHERE DATE(l.created_at) = CURDATE()";
+        }
+    
+        $stmt = Config::CreateStatement($mysqli, $query);
+    
+        // Bind parameters if $from and $to are set
+        if (!empty($from) && !empty($to)) {
+            $stmt->bind_param("ss", $from, $to);
+        }
+    
+        $stmt->bind_result(
+            $model->id,
+            $model->scid,
+            $model->date,
+            $model->type,
+            $model->current_amomount,
+            $model->truns_ammount,
+            $model->mode,
+            $model->remarks,
+            $model->refno,
+            $model->created_by
+        );
+    
+        $stmt->execute();
+    
+        $list = array();
+        while ($stmt->fetch()) {
+            $obj = new scledgerModel();
+            Utils::COPY_ROW_TO_OBJ($obj, $model);
+            $list[$obj->id] = $obj;
+        }
+    
+        $mysqli->close();
+        return $list;
     }
-    $mysqli->close();
-    return $list;
-}
 
 
  public static function ReadSingle($id) {

@@ -6,13 +6,25 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 include_once('../../include_commons.php'); 
 require_once '../../vendor/autoload.php';
 
+// Check if POST data is set
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+       // Example: Save data to the database
+       $to = $_POST['to'] ?? '';
+       $from = $_POST['from'] ?? '';
+   }
+
+
 // Set the headers for Excel file download
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment; filename="AllReport' . date("Y-m-d_H-i-s") . '.xlsx"');
 header('Cache-Control: max-age=0');  // Prevent caching issues
 
 // Fetch stock data (assuming Stock::ReadAll() fetches your data as before)
-$stock = Stock::RecentSell();
+if (!empty($to) && !empty($from)) {
+       $stock = Stock::RecentSell($from, $to);
+   }else{
+       $stock = Stock::RecentSell();
+   }
 
 // Create a new Spreadsheet object
 $spreadsheet = new Spreadsheet();
@@ -42,7 +54,11 @@ $sheet2 = $spreadsheet->createSheet();
 $spreadsheet->setActiveSheetIndex(1);  // Set the second sheet as the active sheet
 $sheet2->setTitle('Supplier Ledger');
 
-$scDue = scledgerModel::ReadToday();
+if (!empty($to) && !empty($from)) {
+       $scDue = scledgerModel::ReadToday($from,$to);
+}else{
+       $scDue = scledgerModel::ReadToday();
+}
 
 // Set headers for sheet 2 (example of a different report)
 $sheet2->setCellValue('A1', 'Name')
@@ -73,7 +89,11 @@ $sheet3 = $spreadsheet->createSheet();
 $spreadsheet->setActiveSheetIndex(2);  // Set the second sheet as the active sheet
 $sheet3->setTitle('Customer Ledger');
 
-$sdDue = sdledgerModel::ReadToday();
+if (!empty($to) && !empty($from)) {
+       $sdDue = sdledgerModel::ReadToday($from,$to);
+}else{
+       $sdDue = sdledgerModel::ReadToday();
+}
 
 // Set headers for sheet 2 (example of a different report)
 $sheet3->setCellValue('A1', 'Name')
@@ -104,7 +124,11 @@ $sheet4 = $spreadsheet->createSheet();
 $spreadsheet->setActiveSheetIndex(3);  // Set the second sheet as the active sheet
 $sheet4->setTitle('Expenses');
 
-$exp = expmodel::ReadToday();
+if (!empty($to) && !empty($from)) {
+       $exp = expmodel::ReadToday($from,$to);
+}else{
+       $exp = expmodel::ReadToday();
+}
 
 // Set headers for sheet 2 (example of a different report)
 $sheet4->setCellValue('A1', 'Name')
