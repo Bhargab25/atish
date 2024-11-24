@@ -24,7 +24,7 @@ public static function Create(expmodel $expmodel) {
 	
 public static function Update(expmodel $expmodel) {
         $mysqli = Config::OpenDBConnection();
-        $query = "update expense set name='$expmodel->name',amount='$expmodel->amount',date='$expmodel->date',remarks='$expmodel->remarks'";
+        $query = "UPDATE expense SETS name='$expmodel->name',amount='$expmodel->amount',date='$expmodel->date',remarks='$expmodel->remarks'";
         $stmt = Config::CreateStatement($mysqli, $query);
      //   $stmt->bind_param("sssi",$expmodel->ENAME,$expmodel->PHONE,$expmodel->PASSWORD,$expmodel->UID);
         $stmt->execute();
@@ -36,7 +36,7 @@ public static function Update(expmodel $expmodel) {
 public static function ReadAll() {
         $model = new expmodel();
         $mysqli = Config::OpenDBConnection();
-        $query = "select * from expense order by uid DESC";
+        $query = "SELECT * FROM expense ORDER BY id DESC";
         $stmt = Config::CreateStatement($mysqli, $query);
         $stmt->bind_result($model->id, $model->name,$model->amount, $model->date,$model->remarks);
         $stmt->execute();
@@ -49,6 +49,23 @@ public static function ReadAll() {
         $mysqli->close();
         return $list;
     }
+
+public static function ReadToday() {
+    $model = new expmodel();
+    $mysqli = Config::OpenDBConnection();
+    $query = "SELECT * FROM expense WHERE DATE(date) = CURDATE() ORDER BY id DESC";
+    $stmt = Config::CreateStatement($mysqli, $query);
+    $stmt->bind_result($model->id, $model->name,$model->amount, $model->date,$model->remarks);
+    $stmt->execute();
+    $list = array();
+    while ($stmt->fetch()) {
+        $obj = new expmodel();
+        Utils::COPY_ROW_TO_OBJ($obj, $model);
+        $list[$obj->id] = $obj;
+    }
+    $mysqli->close();
+    return $list;
+}
 
 
  public static function ReadSingle($id) {
@@ -70,7 +87,7 @@ public static function ReadAll() {
 
 public static function Delete($id) {
         $mysqli = Config::OpenDBConnection();
-        $query = "delete from expense where id=?";
+        $query = "DELETE FROM expense WHERE id=?";
         $stmt = Config::CreateStatement($mysqli, $query);
         $stmt->bind_param("s", $id);
         $stmt->execute();

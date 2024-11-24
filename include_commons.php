@@ -15,6 +15,7 @@ include_once 'model/sdentityModel.php';
 include_once 'model/secuenceModel.php';
 include_once 'model/addStock.php';
 include_once 'model/scledger.php';
+include_once 'model/sdledger.php';
 include_once 'model/scPayment.php';
 include_once 'model/sdPayment.php';
 include_once 'model/invoice.php';

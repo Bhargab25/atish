@@ -40,36 +40,88 @@ foreach ($stock as $s) {
 // Create a second sheet and set it as active
 $sheet2 = $spreadsheet->createSheet();
 $spreadsheet->setActiveSheetIndex(1);  // Set the second sheet as the active sheet
-$sheet2->setTitle('Supplier Due');
+$sheet2->setTitle('Supplier Ledger');
 
-$scDue = scentityModel::ReadAll();
+$scDue = scledgerModel::ReadToday();
 
 // Set headers for sheet 2 (example of a different report)
 $sheet2->setCellValue('A1', 'Name')
-       ->setCellValue('B1', 'Amount');
+       ->setCellValue('B1', 'Date')
+       ->setCellValue('C1', 'Type')
+       ->setCellValue('D1', 'Current Ammount')
+       ->setCellValue('E1', 'Truns Ammount')
+       ->setCellValue('F1', 'Mode')
+       ->setCellValue('G1', 'Ref. No');
 
 // Example data for the second sheet
 $row = 2;
 
 foreach ($scDue as $sc) {
-    $sheet2->setCellValue('A' . $row, $sc->merchant_name ?? '')
-           ->setCellValue('B' . $row, $sc->due_ammount ?? '');
+    $sheet2->setCellValue('A' . $row, $sc->scid ?? '')
+           ->setCellValue('B' . $row, $sc->date ?? '')
+           ->setCellValue('C' . $row, $sc->type ?? '')
+           ->setCellValue('D' . $row, $sc->current_amomount ?? '')
+           ->setCellValue('E' . $row, $sc->truns_ammount ?? '')
+           ->setCellValue('F' . $row, $sc->mode ?? '')
+           ->setCellValue('G' . $row, $sc->refno ?? '');
     $row++;
 }
 
-// ---- Third Sheet (Optional) ----
-// Create another sheet if needed
-// $sheet3 = $spreadsheet->createSheet();
-// $spreadsheet->setActiveSheetIndex(2);  // Set the third sheet as active
-// $sheet3->setTitle('Summary');
+// ---- 3rd Sheet ----
+// Create a 3rd sheet and set it as active
+$sheet3 = $spreadsheet->createSheet();
+$spreadsheet->setActiveSheetIndex(2);  // Set the second sheet as the active sheet
+$sheet3->setTitle('Customer Ledger');
 
-// // Set summary headers
-// $sheet3->setCellValue('A1', 'Summary Data')
-//        ->setCellValue('A2', 'Total Stock')
-//        ->setCellValue('B2', count($stock)); // Example summary (count of stock)
+$sdDue = sdledgerModel::ReadToday();
 
-// Add more data as needed in the third sheet
-// ...
+// Set headers for sheet 2 (example of a different report)
+$sheet3->setCellValue('A1', 'Name')
+       ->setCellValue('B1', 'Date')
+       ->setCellValue('C1', 'Type')
+       ->setCellValue('D1', 'Current Ammount')
+       ->setCellValue('E1', 'Truns Ammount')
+       ->setCellValue('F1', 'Mode')
+       ->setCellValue('G1', 'Ref. No');
+
+// Example data for the second sheet
+$row = 2;
+
+foreach ($sdDue as $sc) {
+    $sheet3->setCellValue('A' . $row, $sc->sdid ?? '')
+           ->setCellValue('B' . $row, $sc->date ?? '')
+           ->setCellValue('C' . $row, $sc->type ?? '')
+           ->setCellValue('D' . $row, $sc->current_amomount ?? '')
+           ->setCellValue('E' . $row, $sc->truns_ammount ?? '')
+           ->setCellValue('F' . $row, $sc->mode ?? '')
+           ->setCellValue('G' . $row, $sc->refno ?? '');
+    $row++;
+}
+
+// ---- 4th Sheet ----
+// Create a 4th sheet and set it as active
+$sheet4 = $spreadsheet->createSheet();
+$spreadsheet->setActiveSheetIndex(3);  // Set the second sheet as the active sheet
+$sheet4->setTitle('Expenses');
+
+$exp = expmodel::ReadToday();
+
+// Set headers for sheet 2 (example of a different report)
+$sheet4->setCellValue('A1', 'Name')
+       ->setCellValue('B1', 'Amount')
+       ->setCellValue('C1', 'Date')
+       ->setCellValue('D1', 'Remarks');
+
+// Example data for the second sheet
+$row = 2;
+
+foreach ($exp as $sc) {
+    $sheet4->setCellValue('A' . $row, $sc->name ?? '')
+           ->setCellValue('B' . $row, $sc->amount ?? '')
+           ->setCellValue('C' . $row, $sc->date ?? '')
+           ->setCellValue('D' . $row, $sc->remarks ?? '');
+    $row++;
+}
 
 // ---- Save and Output the File ----
 // Write the Excel file to output

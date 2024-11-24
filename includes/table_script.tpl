@@ -18,4 +18,18 @@
 <!-- Page level custom scripts -->
 <script src="../../dist/js/demo/datatables-demo.js"></script>
 
+<script>
 
+$('#dataTable').DataTable({
+    destroy: true, // Automatically destroy existing instance
+    stateSave: true,
+    paging: true,
+    searching: true,
+    order: [[0, 'asc']],
+    columnDefs: [
+        { orderable: false, targets: -1 }
+    ]
+});
+
+
+</script>
