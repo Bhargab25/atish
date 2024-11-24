@@ -91,7 +91,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Outstanding (Total)</div>
+                                                Receivable (Total)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $this->sd_total ?></div>
                                         </div>
                                         <div class="col-auto">
@@ -206,7 +206,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Top Outstanding</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Top Receivable</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -70,8 +70,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">finance</h6>
-                        <a class="collapse-item" href="../payment/scPayment.php">Supplier Payment</a>
-                        <a class="collapse-item" href="../payment/sdPayment.php">Customer Payment</a>
+                        <a class="collapse-item" href="../payment/scPayment.php">Payment Payable</a>
+                        <a class="collapse-item" href="../payment/sdPayment.php">Payment Receivable</a>
                     </div>
                 </div>
             </li>
@@ -109,14 +109,14 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
+                        <h6 class="collapse-header">Products:</h6>
                         <a class="collapse-item" href="../product/">Category</a>
                         <a class="collapse-item" href="../subProduct/">Product</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Client:</h6>
                         <a class="collapse-item" href="../sc/">Supplier</a>
                         <a class="collapse-item" href="../sd/">Customer</a>
-                        <a class="collapse-item" href="blank.html">User</a>
+                        <a class="collapse-item" href="../user/">User</a>
                     </div>
                 </div>
             </li>
