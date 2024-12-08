@@ -18,6 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="../../dist/css/style.css" rel="stylesheet">
     <link href="../../dist/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
