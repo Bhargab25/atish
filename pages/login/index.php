@@ -65,7 +65,7 @@ if (Utils::IsGet()) {
 $savant->error_u = $error_u;
 $savant->error_p = $error_p;
 $savant->model = $model;
-$savant->header = $savant->fetch("header.tpl");
+$savant->header = $savant->fetch("headerForLogin.tpl");
 $savant->script = $savant->fetch("script.tpl");
 $savant->display("index.tpl");
 ?>

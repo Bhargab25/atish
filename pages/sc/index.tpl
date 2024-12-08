@@ -24,12 +24,12 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                            <h6 class="m-0 font-weight-bold text-primary">All Sc</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">All Supplier</h6>
                             <a href="#" data-toggle="modal" id="openModalBtnBlank" class="btn btn-success btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-plus"></i>
                                 </span>
-                                <span class="text">Add SC</span>
+                                <span class="text">Add Supplier</span>
                             </a>
                         </div>
                         <div class="card-body">

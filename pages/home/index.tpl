@@ -77,7 +77,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $this->sellCount ?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-chart-line fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $this->sd_total ?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-wallet fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <i class="fas fa-file-invoice-dollar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $this->buyCount ?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
