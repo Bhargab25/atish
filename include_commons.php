@@ -1,9 +1,9 @@
 <?php
+error_reporting(0);
+
 include_once 'lib/savant/Savant3.php';
 include_once 'lib/Utils.php';
 include_once 'lib/Config.php';
-
-
 // Models
 include_once 'model/BaseModel.php';
 include_once 'model/dbmodel.php';

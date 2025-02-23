@@ -10,6 +10,69 @@ class Config {
 
     //Added user vertapp_xmluser with password xml123XML.
 
+    // private static function DB() {
+
+    //     if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "localhost") {
+
+    //         return "afs";
+
+    //     } else {
+
+    //         return "afs";
+
+    //     }
+
+    // }
+
+
+
+    // private static function USER() {
+
+    //     if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "localhost") {
+
+    //         return "root";
+
+    //     } else {
+
+    //         return "root";
+
+    //     }
+
+    // }
+
+
+
+    // private static function PASSWORD() {
+
+    //     if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "localhost") {
+
+    //         return 'PAssw0rd123ff';
+
+    //     } else {
+
+    //         return 'PAssw0rd123ff';
+
+    //     }
+
+    // }
+
+
+
+    // private static function HOST() {
+
+    //     if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "localhost") {
+
+    //         return "mysqldb";
+
+    //     } else {
+
+    //         return "mysqldb";
+
+    //     }
+
+    // }
+
+
     private static function DB() {
 
         if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "localhost") {
@@ -97,8 +160,7 @@ class Config {
 
     public static function BaseUrl() {
 
-        return "localhost/atish/";
-
+        return "localhost//";
     }
 
 

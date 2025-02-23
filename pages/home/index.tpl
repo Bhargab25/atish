@@ -60,7 +60,10 @@
                         </a>
                         <a href="./stockCsv.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Stock Report</a>
+                        <a href="./dbbkp.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fa fa-database fa-sm text-white-50"></i> Database Backup</a>
                         </div>
+                        
                     </div>
 
                     <!-- Content Row -->
@@ -155,7 +158,7 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-4 col-lg-2">
+                        <div class="col-md-6 col-xl-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -201,7 +204,7 @@
                         </div>
                         
                         <!-- SD Dues -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-md-6 col-xl-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -245,7 +248,7 @@
                         </div>
 
                         <!-- SC Dues -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-md-6 col-xl-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div

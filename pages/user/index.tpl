@@ -21,6 +21,17 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <?php if($this->error_u){ ?>
+                        <div class="alert alert-danger" role="alert">
+                            Duplicate user id found!
+                        </div>
+                    <?php } ?>
+                    <?php echo $this->error_p; ?>
+                    <?php if($this->error_p){ ?>
+                        <div class="alert alert-success" role="alert">
+                            User created successfully!
+                        </div>
+                    <?php } ?>
                     <!-- Add Sub Product -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -82,9 +93,9 @@
                                         <tr> 
                                             <th>S.No</th>
                                             <th>Name</th>
+                                            <th>Id</th>
                                             <th>Role</th>
                                             <th>Mobile</th>
-                                            <th>Email</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -96,13 +107,13 @@
                                         <tr>
                                             <th><?php echo $i++; ?></th>
                                             <th><?php echo $p->name; ?></th>
+                                            <th><?php echo $p->userid; ?></th>
                                             <th><?php echo $p->role == 1 ? "Admin" : "Back Office"; ?></th>
                                             <th><?php echo $p->mobile; ?></th>
-                                            <th><?php echo $p->email; ?></th>
                                             <th><?php echo ($p->status == 1) ? '<a href="#" style="width:15px;height:24px;" class="btn btn-success btn-circle rounded-circle"></a>' : '<a href="#" style="width:15px;height:24px;" class="btn btn-danger btn-circle"></a>'; ?></th>
                                             <th>
-                                            <a href="#" class="btn btn-warning btn-circle openModalBtnWithData" data-id="<?php echo $p->uid; ?>"><i class="fa fa-eye"></i></a> 
-                                            <?php echo ($p->status == 1) ? '<a href="deactive.php?id=' . $p->uid . '" class="btn btn-danger btn-circle"><i class="fa fa-ban"></i></a>' : '<a href="active.php?id=' . $p->uid . '" class="btn btn-success btn-circle"><i class="fa fa-check"></i></a>'; ?>
+                                            <!-- <a href="#" class="btn btn-warning btn-circle openModalBtnWithData" data-id="<?php echo $p->uid; ?>"><i class="fa fa-eye"></i></a> -->
+                                            <?php echo ($p->status == 1) ? '<a href="delete.php?id=' . $p->uid . '" class="btn btn-danger btn-circle"><i class="fa fa-ban"></i></a>' : '<a href="activate.php?id=' . $p->uid . '" class="btn btn-success btn-circle"><i class="fa fa-check"></i></a>'; ?>
                                             </th>
                                             <?php } ?>
                                         </tr>

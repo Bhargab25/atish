@@ -99,7 +99,7 @@
                             <div class="modal-body">You're logging out. Take a break, recharge, and return ready for success. See you soon!</div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="logout.php">Logout</a>
+                                <a class="btn btn-primary" href="../logout.php">Logout</a>
                             </div>
                         </div>
                     </div>

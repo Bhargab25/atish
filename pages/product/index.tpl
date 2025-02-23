@@ -165,6 +165,7 @@
         // Function to open modal with blank inputs
         $('#openModalBtnBlank').click(function() {
             $('#productForm')[0].reset();
+            $('#productUnit').prop("disabled", false);
             $('#addProductModal').modal('show');
         });
 
@@ -180,6 +181,7 @@
                     $('#productId').val(data.id);
                     $('#productName').val(data.name);
                     $('#productUnit').val(data.unit);
+                    $('#productUnit').attr("disabled", "disabled");
                     $('#addProductModal').modal('show');
                 },
                 error: function(xhr, status, error) {

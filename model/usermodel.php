@@ -24,7 +24,7 @@ class usermodel extends BaseModel {
     }
 public static function Create(usermodel $usermodel) {
         $mysqli = Config::OpenDBConnection();
-        $query = "INSERT INTO `appuser`(`name`,`userid`, `mobile`, `email`, `password`, `role`, `sign`, `status`, `is_logedin`, `lastlogin_time`, `lastlogin_from`) values('$usermodel->name','$usermodel->userid','$usermodel->mobile','$usermodel->email','$usermodel->password','$usermodel->role','$usermodel->sign','$usermodel->status','$usermodel->is_logedin','$usermodel->lastlogin_time','$usermodel->lastlogin_from')";	
+        $query = "INSERT INTO `appuser`(`name`,`userid`, `mobile`, `email`, `password`, `role`, `sign`, `status`, `is_logedin`) values('$usermodel->name','$usermodel->userid','$usermodel->mobile','$usermodel->email','$usermodel->password','$usermodel->role','$usermodel->sign','$usermodel->status','$usermodel->is_logedin')";	
         $stmt = Config::CreateStatement($mysqli, $query);
         $stmt->execute();
         $id = $mysqli->insert_id;
@@ -47,7 +47,7 @@ public static function Update(usermodel $usermodel) {
 public static function LoginUser(usermodel $m) {
         $model = new usermodel();
         $mysqli = Config::OpenDBConnection();
-        $query = "select * from `appuser` where  userid='$m->userid' and password='$m->password'";
+        $query = "select * from `appuser` where  userid='$m->userid' and password='$m->password' and status=1";
         $stmt = Config::CreateStatement($mysqli, $query);
        // $stmt->bind_param("ss", $m->EMAIL, $m->PASSWORD);
         $stmt->bind_result($model->uid, $model->name, $model->mobile,$model->email, $model->password, $model->role,$model->sign,$model->status,$model->is_logedin,$model->lastlogin_time,$model->lastlogin_from,$model->userid);
@@ -104,12 +104,12 @@ public static function ReadAll() {
             return null;
         }
 		    }	
-public static function ReadSingleByEmail($email) {
+public static function ReadSingleById($id) {
         $model = new usermodel();
 		$mysqli = Config::OpenDBConnection();
-        $query = "select * from users where email =?";
+        $query = "SELECT * FROM appuser WHERE userid =?";
         $stmt = Config::CreateStatement($mysqli, $query);
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("s", $id);
         $stmt->bind_result($model->uid, $model->name, $model->mobile,$model->email, $model->password, $model->role,$model->sign,$model->status,$model->is_logedin,$model->lastlogin_time,$model->lastlogin_from,$model->userid);
 		$stmt->execute();
         if ($stmt->fetch()) {
@@ -132,7 +132,7 @@ public static function Delete($id) {
 
 public static function Deactivate($id) {
         $mysqli = Config::OpenDBConnection();
-        $query = "update appuser set status=0 where uid=?";
+        $query = "UPDATE appuser SET status=0 WHERE uid=?";
         $stmt = Config::CreateStatement($mysqli, $query);
         $stmt->bind_param("s", $id);
         $stmt->execute();
@@ -141,7 +141,7 @@ public static function Deactivate($id) {
     
 public static function Activate($id) {
         $mysqli = Config::OpenDBConnection();
-        $query = "update appuser set isactive=1 where uid=?";
+        $query = "UPDATE appuser SET status=1 WHERE uid=?";
         $stmt = Config::CreateStatement($mysqli, $query);
         $stmt->bind_param("s", $id);
         $stmt->execute();

@@ -122,7 +122,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">SD</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Customer</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -140,7 +140,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Mobile</label>
-                                    <input type="text" class="form-control" id="sdMobile" placeholder="Enter Mobile" name="mobile" maxlength="10" required>
+                                    <input type="text" class="form-control" id="sdMobile" placeholder="Enter Mobile" name="mobile" maxlength="10">
                                 </div>
                                 </div>
                             </div>
@@ -148,11 +148,11 @@
                                 <div class="row">
                                 <div class="col-md-6">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" id="sdEmail" placeholder="sample@email.com" name="email" required>
+                                    <input type="email" class="form-control" id="sdEmail" placeholder="sample@email.com" name="email">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Address</label>
-                                    <input type="text" class="form-control" id="sdAddress" placeholder="Enter Address" maxlength="40" name="address" required>
+                                    <input type="text" class="form-control" id="sdAddress" placeholder="Enter Address" maxlength="40" name="address">
                                 </div>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                     </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="reset">Cancel</button>
-                    <button class="btn btn-primary" name="addp" type="submit">Add SD</button>
+                    <button class="btn btn-primary" name="addp" type="submit">Add Customer</button>
                     </form>
                 </div>
             </div>

@@ -27,13 +27,13 @@
                             <h6 class="m-0 font-weight-bold text-primary">Stock Entry</h6>
                         </div>
                         <div class="card-body">
-                            <form id="stcok_form" role="form">
+                            <form id="stcok_form" role="form" autocomplete="on">
                             <div class="form-group">
                                 <div class="row">
                                 <div class="col-md-3">
                                     <input type="hidden" class="form-control" id="sc_id" name="sc_id" required>
                                     <label>Name</label>
-                                    <input type="text" class="form-control" id="tags" placeholder="Enter Name" name="name" required>
+                                    <input type="text" class="form-control" id="tags" placeholder="Enter Name" name="name" required autocomplete="off">
                                 </div>
                                 <div class="col-md-3">
                                     <label>Mobile</label>
@@ -62,7 +62,7 @@
 
                                 <div id="items">
                                     <div class="row mb-2">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <select class="form-control js-example-basic-single" placeholder="Product" name="products[0][product]">
                                                 <?php 
                                                 $pro = subproductModel::ReadAll(); 
@@ -72,7 +72,10 @@
                                                 ?>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control" placeholder="UOM" name="products[0][uom]" required readonly>
+                                        </div>
+                                        <div class="col-md-2">
                                             <input type="number" class="form-control" placeholder="Qty" name="products[0][qty]" required>
                                         </div>
                                         <div class="col-md-3">
@@ -85,7 +88,7 @@
                                 </div>
                                 
                                 <button class="btn btn-secondary mr-2" type="reset">Cancel</button>
-                                <button id="add_btn" class="btn btn-primary" name="addp" type="submit">Add Product</button>
+                                <button id="add_btn" class="btn btn-primary" name="addp" type="submit">Add Stock</button>
                                 
                             </form>
                             
@@ -169,6 +172,7 @@
                 } else {
                     alert('Failed to add stock!');
                     console.log(res.error);
+                    $("#stcok_form")[0].reset();
                 }
 
                 $("#add_btn").val('Add Stock');
@@ -207,7 +211,7 @@
         e.preventDefault();
         $("#items").append(`
             <div class="row mb-2">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <select class="form-control js-example-basic-single" placeholder="Product" name="products[${itemCount}][product]">
                         <?php 
                         $pro = subproductModel::ReadAll(); 
@@ -217,7 +221,10 @@
                         ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="UOM" name="products[${itemCount}][uom]" required readonly>
+                </div>
+                <div class="col-md-2">
                     <input type="number" class="form-control" placeholder="Qty" name="products[${itemCount}][qty]" required>
                 </div>
                 <div class="col-md-3">
